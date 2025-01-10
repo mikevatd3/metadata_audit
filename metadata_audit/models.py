@@ -1,7 +1,7 @@
 from typing import List, Optional
-from datetime import datetime
+from datetime import date
 
-from sqlalchemy import ForeignKey, Integer, String, Text, DateTime, Float
+from sqlalchemy import Date, ForeignKey, Integer, String, Text, Float
 from sqlalchemy.orm import declarative_base, Mapped, mapped_column, relationship
 
 
@@ -89,16 +89,17 @@ class Edition(Base):
     __tablename__ = "editions"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    edition_date: Mapped[date] = mapped_column(Date)
     num_records: Mapped[Optional[int]] = mapped_column(Integer)
     raw_path: Mapped[Optional[str]] = mapped_column(String)
     script_path: Mapped[Optional[str]] = mapped_column(String)
     version: Mapped[Optional[str]] = mapped_column(String)
     notes: Mapped[Optional[str]] = mapped_column(Text)
-    start: Mapped[Optional[datetime]] = mapped_column(DateTime)
-    end: Mapped[Optional[datetime]] = mapped_column(DateTime)
-    published: Mapped[Optional[datetime]] = mapped_column(DateTime)
-    acquired: Mapped[Optional[datetime]] = mapped_column(DateTime)
-    updated: Mapped[Optional[datetime]] = mapped_column(DateTime)
+    start: Mapped[Optional[date]] = mapped_column(Date)
+    end: Mapped[Optional[date]] = mapped_column(Date)
+    published: Mapped[Optional[date]] = mapped_column(Date)
+    acquired: Mapped[Optional[date]] = mapped_column(Date)
+    updated: Mapped[Optional[date]] = mapped_column(Date)
 
     # Foreign Key linking each edition to one Table
     table_id: Mapped[int] = mapped_column(ForeignKey("tables.id"), nullable=False)
