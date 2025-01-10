@@ -95,7 +95,7 @@ def insert_metadata(
     # 4) upsert edition
     edition_obj = (
         session.query(db.Edition)
-        .filter(db.Edition.version == edition.version)
+        .filter(db.Edition.edition_date == edition.edition_date)
         .filter(db.Edition.table_id == table_obj.id)
         .one_or_none()
     )
@@ -112,6 +112,7 @@ def insert_metadata(
 
     else:
         edition_obj = db.Edition(
+            edition_date=edition.edition_date,
             num_records=edition.num_records,
             raw_path=edition.raw_path,
             script_path=edition.script_path,

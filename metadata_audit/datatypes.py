@@ -1,6 +1,6 @@
 from typing import Any
 from pydantic import BaseModel
-from datetime import datetime
+from datetime import date
 
 
 class Topic(BaseModel):
@@ -57,17 +57,17 @@ class Edition(BaseModel):
     into 'editions' where we track when we added data to the system along
     with some other metadata notes.
     """
-    edition_date: datetime  # provided by script
+    edition_date: date  # provided by script
     num_records: int  # provided by pandas
     raw_path: str # Path to the raw file
     script_path: str # Provided out of the script
     version: str # Provided from pygit
-    published: datetime
-    acquired: datetime
+    published: date
+    acquired: date
     
     # Start and end are special -- still trying to figure out how to deal
     notes: str | None = None
-    start: datetime | None = None
-    end: datetime | None = None
+    start: date | None = None
+    end: date | None = None
 
 
