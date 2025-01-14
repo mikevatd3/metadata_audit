@@ -1,4 +1,5 @@
 from logging import Logger
+from datetime import date
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
@@ -109,6 +110,7 @@ def insert_metadata(
         edition_obj.end = edition.end
         edition_obj.published = edition.published
         edition_obj.acquired = edition.acquired
+        edition_obj.updated = date.today()
 
     else:
         edition_obj = db.Edition(
@@ -122,6 +124,7 @@ def insert_metadata(
             end=edition.end,
             published=edition.published,
             acquired=edition.acquired,
+            updated=date.today()
         )
 
         table_obj.editions.append(edition_obj)
