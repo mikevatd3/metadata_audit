@@ -6,6 +6,7 @@ import click
 
 TABLE_TEMPLATE = """
 [tables.{table_name}]
+name="{table_name}"
 description = ""
 unit_of_analysis = ""
 universe = ""
